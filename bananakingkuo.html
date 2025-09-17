@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>經國國｜新鮮香蕉預購</title>
+  <meta name="description" content="經國國販售新鮮香蕉，線上登記姓名、串數、電話、取貨時間。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #FFFDF6;
+      --brand: #FFD166; /* 香蕉黃 */
+      --brand-dark: #F2C14E;
+      --ink: #2A2A2A;
+      --muted: #6B7280;
+      --ok: #10B981;
+      --err: #EF4444;
+      --card: #FFFFFF;
+      --ring: #f8e5ad;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+    .wrap{max-width:980px;margin:0 auto;padding:24px}
+    header{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;margin-top:8px}
+    .logo{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,#FFF2C7, #FFEAA0);display:grid;place-items:center;border:2px solid var(--ring)}
+    .logo svg{width:46px;height:46px}
+    h1{margin:0;font-size:clamp(24px,4vw,36px);font-weight:800;line-height:1.1}
+    .sub{color:var(--muted);margin-top:6px}
+
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-top:24px}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr;}}
+
+    .card{background:var(--card);border:1px solid #eee;border-radius:16px;padding:18px 18px 20px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+    .card h2{margin:0 0 10px;font-size:20px}
+
+    .hero-img{border-radius:14px;overflow:hidden;border:1px solid #eee}
+    .hero-img img{display:block;width:100%;height:auto}
+    .caption{font-size:12px;color:var(--muted);margin-top:6px}
+
+    form{display:grid;gap:12px;margin-top:6px}
+    label{font-weight:600;font-size:14px}
+    input, select, button, textarea{font:inherit}
+    .field{display:grid;gap:6px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:700px){.row{grid-template-columns:1fr}}
+
+    input, select{padding:12px 14px;border:1px solid #E5E7EB;border-radius:12px;background:#fff;outline:none}
+    input:focus, select:focus{border-color:var(--brand-dark);box-shadow:0 0 0 6px var(--ring)}
+    .help{font-size:12px;color:var(--muted)}
+
+    .price{display:flex;gap:10px;align-items:center;margin:6px 0 10px}
+    .pill{padding:6px 10px;border-radius:999px;background:#FFF4CF;border:1px solid #FDE68A;font-weight:600}
+
+    .btn{padding:12px 16px;border:0;border-radius:12px;background:var(--brand);font-weight:800}
+    .btn:hover{background:var(--brand-dark);cursor:pointer}
+
+    .notice{margin-top:10px;padding:10px 12px;border-radius:12px;background:#F0FDF4;border:1px solid #DCFCE7;color:#14532D;font-size:14px;display:none}
+    .notice.err{background:#FEF2F2;border-color:#FEE2E2;color:#7F1D1D}
+
+    .admin{margin-top:24px}
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left}
+    td, th{padding:8px 10px}
+    tbody tr{background:#fff;border:1px solid #eee}
+    tbody tr>td:first-child{border-radius:10px 0 0 10px}
+    tbody tr>td:last-child{border-radius:0 10px 10px 0}
+    .actions button{font-size:12px;border:1px solid #eee;background:#fff;border-radius:10px;padding:6px 10px}
+    .actions button:hover{background:#f6f6f6;cursor:pointer}
+
+    footer{margin:36px 0 12px;color:var(--muted);font-size:12px}
+    .req{color:var(--err)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <!-- 香蕉圖示（向量） -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M59 14c-2 1-4 1-6 0-3 7-9 14-18 18S16 35 9 32c-1 2-1 4 0 6 4 7 14 12 25 9 11-2 20-12 23-23 1-4 2-8 2-10Z" fill="#FFD166" stroke="#E7B74B" stroke-width="2"/>
+          <path d="M58 11c.5 2 .6 4 .3 6-2 11-12 21-23 23-11 3-21-2-25-9M53 13c1 0 3 0 5-2" stroke="#9A7B2F" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7 30c2 1 4 2 6 2" stroke="#9A7B2F" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <h1>經國國的香蕉小舖 🍌</h1>
+        <p class="sub">產地直送・新鮮甜香・歡迎預購自取</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- 左側：香蕉照片與說明 -->
+      <section class="card">
+        <h2>今日香蕉</h2>
+        <div class="hero-img">
+          <!--
+            ✅ 請把香蕉照片放到 /images/banana.jpg
+            然後讓下行的 src 指向該檔案。
+            你也可以改成線上圖片網址。
+          -->
+          <img src="images/banana.jpg" alt="新鮮香蕉照片（示意）" />
+        </div>
+        <p class="caption">照片為示意，實際以當日到貨為準。</p>
+
+        <div class="price">
+          <span class="pill">販售者｜經國國</span>
+          <span class="pill">預購單位｜以「串」為單位</span>
+        </div>
+        <p class="help">如需大量訂購或外送，請於備註說明或電洽。</p>
+      </section>
+
+      <!-- 右側：預購表單 -->
+      <section class="card">
+        <h2>預購登記表單</h2>
+        <form id="orderForm" novalidate>
+          <div class="field">
+            <label for="name">姓名 <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="請輸入您的姓名" required />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="bunches">購買「串」數 <span class="req">*</span></label>
+              <input id="bunches" name="bunches" type="number" inputmode="numeric" min="1" step="1" placeholder="例如 2" required />
+              <div class="help">每 1 串為一單位，請填寫整數。</div>
+            </div>
+            <div class="field">
+              <label for="pickup">取貨時間 <span class="req">*</span></label>
+              <input id="pickup" name="pickup" type="datetime-local" required />
+              <div class="help">請選擇您方便前來取貨的時間。</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="phone">聯絡電話 <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="09xx-xxx-xxx" pattern="^(0|\+?886)[- ]?9\d{2}[- ]?\d{3}[- ]?\d{3}$" required />
+            <div class="help">支援 09 開頭或 +886 手機格式（可含 - ）。</div>
+          </div>
+
+          <div class="field">
+            <label for="note">備註</label>
+            <textarea id="note" name="note" rows="3" placeholder="例：需要成熟度偏青/偏黃、是否自備環保袋…"></textarea>
+          </div>
+
+          <button class="btn" type="submit">送出預購</button>
+          <div id="msg" class="notice" role="status"></div>
+        </form>
+      </section>
+    </div>
+
+    <!-- 後台簡易清單（僅示範，保存在瀏覽器） -->
+    <section class="card admin" aria-labelledby="listHeading">
+      <h2 id="listHeading">登記清單（僅此裝置可見）</h2>
+      <p class="help">資料暫存於本機瀏覽器（localStorage），重新整理仍保留。若需正式後端，可交由 Google 表單、Airtable、或自架 API 串接。</p>
+      <div style="overflow:auto">
+        <table id="ordersTable" aria-label="登記清單">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>姓名</th>
+              <th>串數</th>
+              <th>電話</th>
+              <th>取貨時間</th>
+              <th>備註</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="actions" style="display:flex;gap:8px;margin-top:10px">
+        <button id="exportBtn" type="button">匯出 CSV</button>
+        <button id="clearBtn" type="button" title="清空所有本機資料">清空</button>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> 經國國香蕉小舖．本頁面僅做示範，實際交易細節以聯繫為準。
+    </footer>
+  </div>
+
+  <script>
+    const $ = (sel, el=document) => el.querySelector(sel)
+    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel))
+
+    const form = $('#orderForm')
+    const msg = $('#msg')
+    const tableBody = $('#ordersTable tbody')
+    const exportBtn = $('#exportBtn')
+    const clearBtn = $('#clearBtn')
+
+    const STORAGE_KEY = 'banana_orders_v1'
+
+    function loadOrders(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') } catch { return [] }
+    }
+    function saveOrders(list){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+    }
+    function formatDT(v){
+      if(!v) return ''
+      const dt = new Date(v)
+      if(Number.isNaN(dt.getTime())) return v
+      const pad = n=>String(n).padStart(2,'0')
+      return `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}`
+    }
+
+    function render(){
+      const orders = loadOrders()
+      tableBody.innerHTML = ''
+      orders.forEach((o, idx)=>{
+        const tr = document.createElement('tr')
+        tr.innerHTML = `
+          <td>${formatDT(o.createdAt)}</td>
+          <td>${o.name}</td>
+          <td>${o.bunches}</td>
+          <td>${o.phone}</td>
+          <td>${formatDT(o.pickup)}</td>
+          <td>${o.note || ''}</td>
+          <td><button data-idx="${idx}" class="del">刪除</button></td>
+        `
+        tableBody.appendChild(tr)
+      })
+      // 綁定刪除
+      $$('.del', tableBody).forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const idx = +e.currentTarget.dataset.idx
+          const orders = loadOrders()
+          orders.splice(idx,1)
+          saveOrders(orders)
+          render()
+        })
+      })
+    }
+
+    function showMsg(text, ok=true){
+      msg.textContent = text
+      msg.classList.toggle('err', !ok)
+      msg.style.display = 'block'
+      setTimeout(()=>{ msg.style.display = 'none' }, 4000)
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault()
+      // 原生驗證
+      if(!form.checkValidity()){
+        showMsg('請完整填寫必填欄位（姓名／串數／電話／取貨時間）。', false)
+        return
+      }
+      // 額外規則：串數需為正整數
+      const bunches = parseInt($('#bunches').value, 10)
+      if(!(bunches > 0)){
+        showMsg('串數請輸入 1 以上的整數。', false)
+        return
+      }
+
+      const order = {
+        id: crypto.randomUUID(),
+        createdAt: new Date().toISOString(),
+        name: $('#name').value.trim(),
+        bunches,
+        phone: $('#phone').value.trim(),
+        pickup: $('#pickup').value,
+        note: $('#note').value.trim()
+      }
+      const orders = loadOrders()
+      orders.unshift(order)
+      saveOrders(orders)
+      render()
+      form.reset()
+      showMsg('預購已送出！我們將盡快與您聯繫確認。')
+    })
+
+    exportBtn.addEventListener('click', ()=>{
+      const orders = loadOrders()
+      if(!orders.length){ showMsg('目前沒有可匯出的資料。', false); return }
+      const header = ['建立時間','姓名','串數','電話','取貨時間','備註']
+      const rows = orders.map(o=>[
+        formatDT(o.createdAt), o.name, o.bunches, o.phone, formatDT(o.pickup), (o.note||'').replaceAll('\n',' ')
+      ])
+      const csv = [header, ...rows].map(r=>r.map(cell=>`"${String(cell).replaceAll('"','""')}"`).join(',')).join('\n')
+      const blob = new Blob(["\ufeff" + csv], {type:'text/csv;charset=utf-8'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `香蕉預購清單_${new Date().toISOString().slice(0,10)}.csv`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    })
+
+    clearBtn.addEventListener('click', ()=>{
+      if(confirm('確定要清空本機的所有登記資料嗎？（無法復原）')){
+        localStorage.removeItem(STORAGE_KEY)
+        render()
+      }
+    })
+
+    // 預設取貨時間：設為最近的整點 + 2 小時
+    (function initPickupDefault(){
+      const now = new Date()
+      now.setMinutes(0,0,0)
+      now.setHours(now.getHours()+2)
+      const pad = n=>String(n).padStart(2,'0')
+      const v = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`
+      $('#pickup').value = v
+    })()
+
+    // footer 年份
+    $('#year').textContent = new Date().getFullYear()
+
+  </script>
+</body>
+</html>
